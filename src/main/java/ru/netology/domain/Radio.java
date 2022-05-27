@@ -1,41 +1,47 @@
 package ru.netology.domain;
+
 public class Radio {
 
     private int currentStation;
-   //метод выбора станции циферкой
+
+    //метод выбора станции номером станции
     public void setCurrentStation(int newCurrentStation) {
         if (newCurrentStation < 0) {
             return;
         }
-        if (newCurrentStation >9) {
+        if (newCurrentStation > 9) {
             return;
         }
         this.currentStation = newCurrentStation;
     }
+
     public int getCurrentStation() {
         return currentStation;
     }
 
     //выбор следующей станции кнопкой next
-    public void setNextStation(int newCurrentStation) {
-        newCurrentStation++;
-        if (newCurrentStation == 10) {
-            newCurrentStation = 0;
+    public void setNextStation() {
+
+        currentStation++;
+        if (currentStation == 10) {
+            currentStation = 0;
         }
-        currentStation = newCurrentStation;
+
     }
+
     public int getNextStation() {
         return currentStation;
     }
 
     //выбор предыдущей станции кнопкой prev
-    public void setPrevStation(int newCurrentStation) {
-        newCurrentStation = newCurrentStation - 1;
-        if (newCurrentStation == -1) {
-            newCurrentStation = 9;
+    public void setPrevStation() {
+
+        currentStation = currentStation - 1;
+        if (currentStation == -1) {
+            currentStation = 9;
         }
-        this.currentStation = newCurrentStation;
     }
+
     public int getPrevStation() {
         return currentStation;
     }
@@ -43,7 +49,7 @@ public class Radio {
 
     private int currentVolume;
 
-    //метод выбора громкости циферкой
+    //метод выбора громкости номером громкости
     public void setCurrentVolume(int newCurrentVolume) {
         if (newCurrentVolume < 0) {
             return;
@@ -53,39 +59,40 @@ public class Radio {
         }
         this.currentVolume = newCurrentVolume;
     }
+
     public int getCurrentVolume() {
         return currentVolume;
     }
 
 
-    public void setIncreaseVolume(int newCurrentVolume) {
-        if (newCurrentVolume < 10) {
-            newCurrentVolume++;
+    //увеличение громкости
+    public void setIncreaseVolume() {
+        currentVolume++;
+        if (currentVolume == 11) {
+            currentVolume = 10;
         }
-        if (newCurrentVolume == 10) {
-            newCurrentVolume = 10;
-        }
-        this.currentVolume = newCurrentVolume;
+
     }
+
     public int getIncreaseVolume() {
         return currentVolume;
     }
 
 
-    public void setReduceVolume(int newCurrentVolume) {
-        if (newCurrentVolume > 0) {
-            newCurrentVolume = newCurrentVolume - 1;
+    //уменьшение громкости
+    public void setReduceVolume() {
+
+        currentVolume = currentVolume - 1;
+
+        if (currentVolume == -1) {
+            currentVolume = 0;
         }
-        if (newCurrentVolume == 0) {
-            newCurrentVolume = 0;
-        }
-        this.currentVolume = newCurrentVolume;
+
     }
+
     public int getReduceVolume() {
         return currentVolume;
     }
-
-
 
 
 }

@@ -1,16 +1,14 @@
 package ru.netology.domain;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RadioTest {
 
     @ParameterizedTest
-    @CsvFileSource(resources={"/Station.csv"})
+    @CsvFileSource(resources = {"/Station.csv"})
     public void newStation(int currentStation, int expected) {
         Radio rad = new Radio();
 
@@ -21,14 +19,15 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
     @ParameterizedTest
-    @CsvFileSource(resources={"/NextStation.csv"})
+    @CsvFileSource(resources = {"/NextStation.csv"})
     public void nextStation(int currentStation, int expected) {
         Radio rad = new Radio();
 
         rad.setCurrentStation(currentStation);
-        int x = rad.getCurrentStation();
-        rad.setNextStation(x);
+
+        rad.setNextStation();
 
         int actual = rad.getNextStation();
 
@@ -37,13 +36,13 @@ public class RadioTest {
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources={"/PrevStation.csv"})
+    @CsvFileSource(resources = {"/PrevStation.csv"})
     public void prevStation(int currentStation, int expected) {
         Radio rad = new Radio();
 
         rad.setCurrentStation(currentStation);
-        int x = rad.getCurrentStation();
-        rad.setPrevStation(x);
+
+        rad.setPrevStation();
 
         int actual = rad.getPrevStation();
 
@@ -52,9 +51,8 @@ public class RadioTest {
     }
 
 
-
     @ParameterizedTest
-    @CsvFileSource(resources={"/Volume.csv"})
+    @CsvFileSource(resources = {"/Volume.csv"})
     public void newVolume(int currentVolume, int expected) {
         Radio rad = new Radio();
 
@@ -66,11 +64,11 @@ public class RadioTest {
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources={"/IncreaseVolume.csv"})
+    @CsvFileSource(resources = {"/IncreaseVolume.csv"})
     public void increaseVolume(int currentVolume, int expected) {
         Radio rad = new Radio();
-
-        rad.setIncreaseVolume(currentVolume);
+        rad.setCurrentVolume(currentVolume);
+        rad.setIncreaseVolume();
 
         int actual = rad.getIncreaseVolume();
 
@@ -78,11 +76,11 @@ public class RadioTest {
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources={"/ReduceVolume.csv"})
+    @CsvFileSource(resources = {"/ReduceVolume.csv"})
     public void reduceVolume(int currentVolume, int expected) {
         Radio rad = new Radio();
-
-        rad.setReduceVolume(currentVolume);
+        rad.setCurrentVolume(currentVolume);
+        rad.setReduceVolume();
 
         int actual = rad.getReduceVolume();
 
